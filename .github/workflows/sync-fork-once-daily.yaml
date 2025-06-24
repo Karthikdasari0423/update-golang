@@ -1,4 +1,4 @@
-name: sync-fork
+name: sync-fork-daily-once
 on:
   schedule:
     - cron: '0 0 * * *'
